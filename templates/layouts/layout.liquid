@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <title>{% block title %}Mixture + inuit.css{% endblock %}</title>
         {{ "your-project.css" | asset_url | stylesheet_tag }}
 
@@ -9,19 +10,19 @@
         
     </head>
     <body class="wrapper">
-        {% include "navigation" %}
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
+       {% include "navigation" %}
+       {% block content %}{% endblock %}
+        
     </body>
     
     <!--
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('{{ "js/vendor/jquery-2.0.2.min.js" | asset_url | script_tag }}')</script>
 	-->
-		
 	{{ "js/zepto.min.js" | asset_url | script_tag }}
 	{{ "js/plugins.min.js" | asset_url | script_tag }}
 	{{ "js/main.js" | asset_url | script_tag }}
+	
+	{% block script %}{% endblock %}
 
 </html>

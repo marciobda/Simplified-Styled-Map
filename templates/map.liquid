@@ -1,3 +1,38 @@
 {% block content %}
-	<h1>Map Test</h1>
+    <style type="text/css">
+      html { height: 100%; margin: 0; padding: 0 }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+
+	<div id="map_canvas" style="width:100%; height:100%"></div>
 {% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJ9hKA4Ev5QCSnMmivKusHEboGSqI55Xg&sensor=false"></script>
+<script>
+
+	var lat, lng;
+
+	var success = function(pos)
+	{
+		lat = pos.coords.latitude;
+		lng = pos.coords.longitude;
+
+		console.log(lat + ' ' + lng);
+
+		var mapOptions = {
+			center: new google.maps.LatLng(lat, lng),
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+
+	}
+
+	window.navigator.geolocation.getCurrentPosition(success);
+
+</script>
+
+{% endblock%}
